@@ -11,8 +11,14 @@ import {
   Text,
   View
 } from 'react-native';
+interface Props {
 
-export default class mises extends Component {
+}
+
+interface State {
+
+}
+export default class mises extends Component<Props,State> {
   render() {
     return (
       <View style={styles.container}>
@@ -31,7 +37,7 @@ export default class mises extends Component {
   }
 }
 
-const styles = StyleSheet.create({
+const styles:any = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
