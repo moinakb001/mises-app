@@ -11,15 +11,24 @@ import {
   Text,
   View
 } from 'react-native';
-interface Props {
 
-}
-
-interface State {
-
-}
-export default class mises extends Component<Props,State> {
+export default class mises extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { resp: "HEL/O" };
+    this.getGoogle();
+  }
+  async getGoogle() {
+    let ass = await this.getMovies();
+    this.setState({resp:ass[0].title});
+  }
+  async getMovies() {
+    let response = await fetch('https://facebook.github.io/react-native/movies.json');
+    let responseJson = await response.json();
+    return responseJson.movies;
+  }
   render() {
+
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
@@ -30,14 +39,14 @@ export default class mises extends Component<Props,State> {
         </Text>
         <Text style={styles.instructions}>
           Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
+          Shake or press menu button for dev menu{this.state.resp}
         </Text>
       </View>
     );
   }
 }
 
-const styles:any = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
